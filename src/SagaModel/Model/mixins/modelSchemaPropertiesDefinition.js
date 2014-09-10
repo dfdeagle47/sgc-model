@@ -1,6 +1,6 @@
-define([
-], function () {
+define([], function () {
 	'use strict';
+
 	return function (/*SagaModel*/) {
 
 		return {
@@ -60,6 +60,9 @@ define([
 					return this.set(attribute, value);
 				};
 			}
+
 		};
+
 	};
+
 });

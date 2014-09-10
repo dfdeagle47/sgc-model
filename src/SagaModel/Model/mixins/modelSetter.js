@@ -1,10 +1,11 @@
-define([
-], function () {
+define([], function () {
 	'use strict';
-	return function(/*SagaModel*/){
+
+	return function (/*SagaModel*/) {
+
 		return {
 
-			__existSetterForAttribute: function(attribute){
+			__existSetterForAttribute: function (attribute) {
 				if (!_.isString(attribute)) {
 					return false;
 				}
@@ -12,31 +13,32 @@ define([
 				return (setter in this) && (_.isFunction(this[setter]));
 			},
 
-			set: function SGSetter(attribute, raw, options){
-
+			set: function SGSetter(attribute, raw, options) {
 				if (_.isObject(attribute) && _.isObject(raw) && !options) {
-						options = raw;
+					options = raw;
 				}
 
-
-				options = _.defaults(options||{}, {
-					setterForce:false, 
-					setEach:false
+				options = _.defaults(options || {}, {
+					setterForce: false,
+					setEach: false
 				});
 
 				if (!options.setterForce &&  this.__existSetterForAttribute(attribute)) {
-					return this[attribute.asSetter()](raw, _.clone(options||{}));
+					return this[attribute.asSetter()](raw, _.clone(options || {}));
 				}
 
 				if (options.setEach && _.isObject(attribute)) {
-					_.each(attribute, function(value, key){
+					_.each(attribute, function (value, key) {
 						this.set(key, value, _.clone(options), attribute);
 					}, this);
 					return;
 				}
 
-				return  Backbone.Model.prototype.set.apply(this, [attribute, raw, options]);
+				return Backbone.Model.prototype.set.apply(this, [attribute, raw, options]);
 			}
+
 		};
+
 	};
+
 });

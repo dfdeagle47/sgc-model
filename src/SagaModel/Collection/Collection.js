@@ -1,17 +1,16 @@
 define([
-	'backbone',
-
 	'./mixins/collectionHelpers',
 	'./mixins/collectionPagination',
 	'./mixins/collectionSync'
 ], function (
-	Backbone,
 	collectionHelpers,
 	collectionPagination,
 	collectionSync
-
 ) {
 	'use strict';
+
+	var Backbone = require('backbone');
+
 	var SagaCollection = Backbone.Collection.extend({
 
 		_isLoading: false,
@@ -49,15 +48,19 @@ define([
 			return res;
 		},
 
-		updateUrl: function(){
-
+		updateUrl: function () {
 			if (this.parent.instance) {
 				if (!this.parent.instance.id) {
-					var me = this;
-					this.listenTo(this.parent.instance, 'change:'+this.parent.instance.idAttribute, function(parentModel){
-						var parentUrl = typeof parentModel.url === 'string' ? parentModel.url : parentModel.url();
-						me.url = parentUrl+'/'+me.parent.path;
-					});
+					var eventName = 'change:' + this.parent.instance.idAttribute;
+
+					this.listenTo(this.parent.instance, eventName, function (parentModel) {
+						var parentUrl = parentModel.url;
+						if (typeof parentUrl === 'function') {
+							parentUrl = parentUrl();
+						}
+
+						this.url = parentUrl + '/' + this.parent.path;
+					}, this);
 				}
 			}
 		}

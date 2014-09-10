@@ -1,14 +1,15 @@
-define([
-], function () {
+define([], function () {
 	'use strict';
 
-	return function(SagaCollection){
+	return function (SagaCollection) {
+
 		return {
-			isEmpty: function(){
-				return !!!this.length;
+
+			isEmpty: function () {
+				return this.length === 0;
 			},
 
-			previousModel: function(model){
+			previousModel: function (model) {
 				if (!model) {
 					return;
 				}
@@ -21,10 +22,10 @@ define([
 				return this.at(index - 1);
 			},
 
-			remove: function(predicate){
+			remove: function (predicate) {
 				if (predicate && _.isFunction(predicate)) {
 					var toRemove = [];
-					this.each(function(model){
+					this.each(function (model) {
 						if (predicate(model)) {
 							toRemove.push(model);
 						}
@@ -36,7 +37,7 @@ define([
 				return Backbone.Collection.prototype.remove.apply(this, arguments);
 			},
 
-			nextModel: function(model){
+			nextModel: function (model) {
 				if (!model) {
 					return;
 				}
@@ -63,18 +64,23 @@ define([
 			clear: function (options)  {
 				var models = this.models;
 				this.reset([]);
+
 				for (var i = models.length - 1; i >= 0; i--) {
 					models[i].clear(options);
 				}
+
 				this.stopListening();
-				this.parent && (this.parent = null);
+
+				if (this.parent) {
+					this.parent = null;
+				}
 			},
 
 			where: function (attrs) {
-				var fun_attrs = {};
+				var funAttrs = {};
 				for (var key in attrs) {
 					if (typeof attrs[key] === 'function') {
-						fun_attrs[key] = attrs[key];
+						funAttrs[key] = attrs[key];
 						delete attrs[key];
 					}
 				}
@@ -89,10 +95,10 @@ define([
 					return where;
 				}
 				return where.filter(function (model) {
-					for (var key in fun_attrs) {
-						if (!fun_attrs[key](model[key])) {
-							return false;	
-						} 
+					for (var key in funAttrs) {
+						if (!funAttrs[key](model[key])) {
+							return false;
+						}
 					}
 					return true;
 				});
@@ -132,7 +138,7 @@ define([
 				return new Collection(items);
 			},
 
-			mergeWithCollection: function(anotherCollection){
+			mergeWithCollection: function (anotherCollection) {
 				for (var i = 0; i < anotherCollection.models.length; i++) {
 					this.add(anotherCollection.models[i]);
 				}
@@ -173,15 +179,16 @@ define([
 				return Backbone.Collection.prototype.set.apply(this, arguments);
 			},
 
-
 			add: function (model, options) {
 				//Try add simple _id
 				if (_.isString(model)) {
 					// _isId = true;
 					this.add({_id:model}, options);
 				}
-				return  Backbone.Collection.prototype.add.apply(this, [model, options]);
+				return Backbone.Collection.prototype.add.apply(this, [model, options]);
 			}
 		};
+
 	};
+
 });

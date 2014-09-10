@@ -9,6 +9,7 @@ define([
 	var mocha = window.mocha;
 
 	mocha.setup('bdd');
+	mocha.reporter('spec');
 
 	var Collection = SGCModel.Collection;
 	var Model = SGCModel.Model;
@@ -27,5 +28,10 @@ define([
 
 	});
 
-	mocha.run();
+	if (window.mochaPhantomJS) {
+		window.mochaPhantomJS.run();
+	}
+	else {
+		mocha.run();
+	}
 });

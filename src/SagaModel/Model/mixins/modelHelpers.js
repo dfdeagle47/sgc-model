@@ -1,7 +1,10 @@
-define([
-], function () {
+define([], function () {
 	'use strict';
-	return function(/*SagaModel*/){
+
+	return function (/*SagaModel*/) {
+
 		return {};
+
 	};
+
 });

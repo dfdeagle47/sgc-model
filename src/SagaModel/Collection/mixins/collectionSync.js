@@ -1,21 +1,21 @@
-define([
-], function (
-	) {
+define([], function () {
 	'use strict';
-	return function(/*SagaCollection*/){
+
+	return function (/*SagaCollection*/) {
+
 		return {
-		
+
 			_prepareFetchOptions: function (options) {
-				options = _.defaults(options||{}, {
+				options = _.defaults(options || {}, {
 					data : {}
 				});
 
 				if (this._sort) {
 					if (typeof this._sort === 'string') {
-						options.data.sort_by = this._sort;
+						options.data.sortBy = this._sort;
 					} else {
-						options.data.sort_by = this._sort.keys()[0];
-						options.data.sort_how = this._sort[options.data.sort_by];
+						options.data.sortBy = this._sort.keys()[0];
+						options.data.sortHow = this._sort[options.data.sortBy];
 					}
 				}
 				for (var key in this._filters) {
@@ -27,7 +27,7 @@ define([
 			},
 
 			fetch: function (options) {
-				options = _.defaults(options||{}, {
+				options = _.defaults(options || {}, {
 					paginate:false
 				});
 
@@ -44,25 +44,31 @@ define([
 				// var error =  options.error;
 
 				var me = this;
-				options.success = function(){
+				options.success = function () {
 					me._isLoading = false;
 					me.trigger('Fetch:success');
 					me.trigger('loading-stop');
-					success && success.apply(this, arguments);
+
+					if (success) {
+						success.apply(this, arguments);
+					}
 				};
 
-				options.error = function(error){
+				options.error = function (error) {
 					if (error && error.apply) {
 						error.apply(this, arguments);
 					}
-					
+
 					me.trigger('Fetch:error', error);
 					me._isLoading = false;
 					me.trigger('loading-stop');
 				};
 
-				return  Backbone.Collection.prototype.fetch.apply(this, [options]);
+				return Backbone.Collection.prototype.fetch.apply(this, [options]);
 			}
+
 		};
+
 	};
+
 });
