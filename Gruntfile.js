@@ -32,9 +32,6 @@ function GruntTasks (grunt) {
 			]
 		},
 		clean: {
-			coverage: [
-				'test/coverage'
-			],
 			dist: [
 				'dist'
 			]

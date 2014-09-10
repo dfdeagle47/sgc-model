@@ -1,6 +1,9 @@
 require.config({
 	deps: ['sgc-model', 'test'],
 	shim: {
+		jquery: {
+			exports: '$'
+		},
 		underscore: {
 			exports: '_'
 		},
