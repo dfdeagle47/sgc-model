@@ -16,6 +16,7 @@
 		"type": "git",
 		"url": "https://github.com/Sagacify/sgc-model.git"
 	},
+	"ignore": {},
 	"dependencies": {
 		"underscore": "^1.7.0",
 		"requirejs": "^2.1.14",

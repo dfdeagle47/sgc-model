@@ -22,7 +22,7 @@
 		"url": "https://github.com/Sagacify/sgc-model.git"
 	},
 	"scripts": {
-		"build": "npm install && npm test",
+		"postinstall": "npm install && npm test",
 		"test": "grunt ci"
 	},
 	"author": {
