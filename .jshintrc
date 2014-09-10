@@ -1,5 +1,5 @@
 {
-	"es3": true,
+	"es5": true,
 	"boss": true,
 	"expr": true,
 	"curly": true,
@@ -27,6 +27,7 @@
 		"requirejs": false,
 		"require": false,
 		"define": false,
+
 		"it": false,
 		"describe": false,
 

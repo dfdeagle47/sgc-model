@@ -8,7 +8,7 @@ define([
 	modelSchemaPropertiesDefinition,
 	modelGetter,
 	modelSetter
-	) {
+) {
 	'use strict';
 
 	var SagaModel = Backbone.Model.extend({
