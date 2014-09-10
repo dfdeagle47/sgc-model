@@ -22,7 +22,6 @@
 		"url": "https://github.com/Sagacify/sgc-model.git"
 	},
 	"scripts": {
-		"postinstall": "grunt build",
 		"test": "grunt ci"
 	},
 	"author": {
