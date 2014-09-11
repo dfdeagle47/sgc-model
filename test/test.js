@@ -3,12 +3,11 @@ define([
 	'chai',
 	'../test/collection/collection',
 	'../test/model/model',
-	
+
 	'mocha'
 ], function (SGCModel, chai, collection, model) {
 	'use strict';
 
-	var expect = chai.expect;
 	var mocha = window.mocha;
 
 	mocha.setup('bdd');

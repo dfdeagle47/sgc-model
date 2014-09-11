@@ -1,4 +1,6 @@
-define([], function () {
+define([
+	'../../Utils/utils'
+], function (utils) {
 	'use strict';
 
 	return function (/*SagaModel*/) {
@@ -18,7 +20,7 @@ define([], function () {
 				return this.__generatedGetterAndSetter;
 			},
 
-			_generateGetSetForAttribute: function (attribute, options) {
+			_generateGetSetForAttribute: function (attribute) {
 
 
 				if (this._generatedGetterAndSetter()[attribute]) {
@@ -29,7 +31,7 @@ define([], function () {
 				var getter = this._defineGetter(attribute);
 				if (getter) {
 					descriptor.get = getter;	
-				};
+				}
 				
 				var setter = this._defineSetter(attribute);
 				if (setter) {
@@ -42,7 +44,7 @@ define([], function () {
 
 			_defineGetter: function (attribute) {
 				if (this.__existGetterForAttribute(attribute)) {
-					return this[attribute.asGetter()];
+					return this[utils.asGetter(attribute)];
 				}
 
 				return function () {
@@ -52,7 +54,7 @@ define([], function () {
 
 			_defineSetter: function (attribute) {
 				if (this.__existSetterForAttribute(attribute)) {
-					return this[attribute.asSetter()];
+					return this[utils.asSetter(attribute)];
 				}
 
 				return function (value) {

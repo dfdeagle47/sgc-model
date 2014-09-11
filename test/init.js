@@ -23,8 +23,8 @@ require.config({
 		mocha: '../node_modules/mocha/mocha',
 		chai: '../node_modules/chai/chai',
 
-		'sgc-model': '../src/sgc-model',
-		// 'sgc-model': '../dist/sgc-model.min',
+		// 'sgc-model': '../src/sgc-model',
+		'sgc-model': '../dist/sgc-model.min',
 
 		'test': '../test/test'
 	},

@@ -1,4 +1,6 @@
-define([], function () {
+define([
+	'../../Utils/utils'
+	], function (utils) {
 	'use strict';
 
 	return function (/*SagaModel*/) {
@@ -9,7 +11,7 @@ define([], function () {
 				if (!_.isString(attribute)) {
 					return false;
 				}
-				var setter = attribute.asSetter();
+				var setter = utils.asSetter(attribute);
 				return (setter in this) && (_.isFunction(this[setter]));
 			},
 
@@ -24,7 +26,7 @@ define([], function () {
 				});
 
 				if (!options.setterForce &&  this.__existSetterForAttribute(attribute)) {
-					return this[attribute.asSetter()](raw, _.clone(options || {}));
+					return this[utils.asSetter(attribute)](raw, _.clone(options || {}));
 				}
 
 				if (options.setEach && _.isObject(attribute)) {

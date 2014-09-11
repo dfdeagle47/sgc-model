@@ -2,34 +2,35 @@ define([], function (
 ) {
 	'use strict';
 
-	String.prototype.asGetter = function(){
-		return 'get'+this.capitalize();
+	var utils = {};
+
+	utils.asGetter = function(string){
+		return 'get'+utils.capitalize(string);
 	};
 
-	String.prototype.asSetter = function(){
-		return 'set'+this.capitalize();
+	utils.asSetter = function(string){
+		return 'set'+utils.capitalize(string);
 	};
 
-	String.prototype.capitalize = function() {
-		var capitalized = "";
-		var split = this.split('.');
+	utils.capitalize = function(string) {
+		var capitalized = '';
+		var split = string.split('.');
 		split.forEach(function(part){
 			capitalized += part.charAt(0).toUpperCase()+part.slice(1);
 		});
 	    return capitalized;
 	};
 
-	String.prototype.contains = function(str){
-		return ~this.indexOf(str);
+	utils.contains = function(string, str){
+		return ~string.indexOf(str);
 	};
 
-	String.prototype.startsWith = function(str){
-		return this.slice(0, str.length) === str;
+	utils.startsWith = function(string, str){
+		return string.slice(0, str.length) === str;
 	};
 
-	String.prototype.endsWith = function(str){
-		return this.slice(this.length - str.length, this.length) === str;
+	utils.endsWith = function(string, str){
+		return string.slice(string.length - str.length, string.length) === str;
 	};
-
-
+	return utils;
 });

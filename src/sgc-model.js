@@ -1,4 +1,3 @@
-
 define(function (require) {
 	'use strict';
 
@@ -8,6 +7,7 @@ define(function (require) {
 
 	return {
 		Collection: Collection,
-		Model: Model
+		Model: Model,
+		utils:utils
 	};
 });

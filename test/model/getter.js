@@ -1,11 +1,10 @@
 define([
 	'sgc-model',
-	'chai',
+	'chai'
 ], function (SGCModel, chai) {
 	'use strict';
 
 	return function(){
-		var expect = chai.expect;
 
 		chai.should();
 
@@ -16,29 +15,29 @@ define([
 
 			it('test exist getter for attribute ', function () {
 				var ExtendedModel = Model.extend({
-					getMyCustomAttributeName: function(newName){
+					getMyCustomAttributeName: function(){
 						this.get('myCustomAttributeName', 'customSet', {getterForce:true});
 					}
 				});
 				var model = new ExtendedModel();
-				chai.assert.equal(model.__existGetterForAttribute('myCustomAttributeName'), true)
+				chai.assert.equal(model.__existGetterForAttribute('myCustomAttributeName'), true);
 			});
 
-			// __existGetterForAttribute
 			it('test not exist getter for attribute ', function () {
 				var model = new Model();
-				chai.assert.equal(model.__existGetterForAttribute('myCustomAttributeName'), false)
+				chai.assert.equal(model.__existGetterForAttribute('myCustomAttributeName'), false);
 			});	
 
 			it('Testing custom getter access with get("attr")', function () {
 				var ExtendedModel = Model.extend({
 					getName: function(){
-						return "XYZ"
+						return 'XYZ';
 					}
 				});
+
 				var model = new ExtendedModel();
 
-				chai.assert.equal(model.get('name'), 'XYZ')
+				chai.assert.equal(model.get('name'), 'XYZ');
 			});
 
 
@@ -52,10 +51,9 @@ define([
 				var model = new ExtendedModel();
 				model.set('customvalue', 'XYZ');
 
-				chai.assert.equal(model.get('name'), 'XYZ')
+				chai.assert.equal(model.get('name'), 'XYZ');
 			});
 
 		});	
-
-	}
+	};
 });

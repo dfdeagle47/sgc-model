@@ -22,7 +22,7 @@ define([
 			options = _.defaults(options||{}, {
 				url: null,
 				parent: null
-			})
+			});
 
 			this.removePaginate();
 			this.resetSGSort();

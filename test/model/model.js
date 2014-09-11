@@ -4,7 +4,7 @@ define([
 	'./setter',
 	'./getter',
 	'./getterAndSetterSchemaProperties',
-	'./helpers',
+	'./helpers'
 ], function (events, lifecycle, setter, getter, getterAndSetterSchemaProperties, helpers) {
 	'use strict';
 
@@ -15,5 +15,5 @@ define([
 		getter();
 		getterAndSetterSchemaProperties();
 		helpers();
-	}
+	};
 });

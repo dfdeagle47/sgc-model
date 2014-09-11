@@ -1,10 +1,11 @@
 define([
-    'backbone'
+    '../../Utils/utils'
 ], function(
-    Backbone
+    utils
 ) {
     'use strict';
 
+    var Backbone = require('backbone');
     
     function cutTrigger(trigger) {
         var res = {};
@@ -18,7 +19,7 @@ define([
         return {
 
             __isMpathTrigger: function(trigger) {
-                return _.isString(trigger) && trigger.contains('.') && trigger.startsWith('change:');
+                return _.isString(trigger) && utils.contains(trigger, '.') && utils.startsWith(trigger, 'change:');
             },
 
             on: function(trigger, callback, context) {
@@ -36,7 +37,7 @@ define([
             },
 
             off: function(trigger, callback, context) {
-                if (_.isString(trigger) && trigger.contains('.') && trigger.startsWith('change:')) {
+                if (_.isString(trigger) && utils.contains('.', trigger) && utils.startsWith(trigger, 'change:')) {
                     var newTrigger = cutTrigger(trigger);
                     var subModel = this.get([newTrigger.submodelName]);
                     if (subModel instanceof Backbone.Model) {

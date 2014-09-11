@@ -1,6 +1,7 @@
-define([], function () {
+define([
+	'../../Utils/utils'
+	], function (utils) {
 	'use strict';
-
 	return function (/*SagaModel*/) {
 
 		return {
@@ -9,7 +10,7 @@ define([], function () {
 				if (!_.isString(attribute)) {
 					return false;
 				}
-				var getter = attribute.asGetter();
+				var getter = utils.asGetter(attribute);
 				return (getter in this) && (_.isFunction(this[getter]));
 			},
 
@@ -19,7 +20,7 @@ define([], function () {
 				});
 
 				if (!options.getterForce &&  this.__existGetterForAttribute(attribute)) {
-					return this[attribute.asGetter()](attribute, _.clone(options || {}));
+					return this[utils.asGetter(attribute)](attribute, _.clone(options || {}));
 				}
 
 				return Backbone.Model.prototype.get.apply(this, arguments);

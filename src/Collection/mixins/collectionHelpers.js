@@ -1,7 +1,7 @@
 define([], function () {
 	'use strict';
 
-	return function (SagaCollection) {
+	return function (/*SagaCollection*/) {
 
 		return {
 
@@ -66,7 +66,7 @@ define([], function () {
 			remove: function (models, options) {
 				options = _.defaults(options||{}, {
 					predicate:null
-				})
+				});
 
 				if (options.predicate && _.isFunction(options.predicate)) {
 					var toRemove = this.filter(options.predicate);
@@ -107,12 +107,14 @@ define([], function () {
 			},
 
 		    where: function(attrs, first) {
-				if (_.isEmpty(attrs)) return first ? void 0 : [];
+				if (_.isEmpty(attrs)) {
+					 return first ? void 0 : [];
+				}
 				
 				return this[first ? 'find' : 'filter'](function(model) {
 					if (model.equal(attrs)) {
 						return true;
-					};
+					}
 				});
 		    },
 

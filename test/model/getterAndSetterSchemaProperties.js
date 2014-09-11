@@ -1,11 +1,10 @@
 define([
 	'sgc-model',
-	'chai',
+	'chai'
 ], function (SGCModel, chai) {
 	'use strict';
 
 	return function(){
-		var expect = chai.expect;
 
 		var Model = SGCModel.Model;
 
@@ -22,10 +21,10 @@ define([
 					get: function(attribute){
 						if (attribute === 'customAttr') {
 							done();
-						};
+						}
 						return Model.prototype.get.apply(this, arguments);
 					}
-				})
+				});
 				var model = new ExtenderModel();
 				model.customAttr;
 			});
@@ -41,7 +40,7 @@ define([
 					getCustomAttr: function(){
 						done();
 					}
-				})
+				});
 				var model = new ExtenderModel();
 				model.customAttr;
 			});
@@ -57,10 +56,10 @@ define([
 					set: function(attribute){
 						if (attribute === 'customAttr') {
 							done();
-						};
+						}
 						return Model.prototype.set.apply(this, arguments);
 					}
-				})
+				});
 				var model = new ExtenderModel();
 				model.customAttr = 0;
 			});
@@ -76,7 +75,7 @@ define([
 					setCustomAttr: function(){
 						done();
 					}
-				})
+				});
 				var model = new ExtenderModel();
 				model.customAttr = 0;
 			});
@@ -87,15 +86,13 @@ define([
 						var res = Model.prototype.constructor.apply(this, arguments);
 						this._generateGetSetForAttribute('customAttr');
 						return res;
-					},
-				})
+					}
+				});
 				var model = new ExtenderModel();
 				
 				model.customAttr = 4;
-				chai.assert.equal(model.customAttr, 4)
+				chai.assert.equal(model.customAttr, 4);
 			});
 		});	
-
-
-	}
+	};
 });

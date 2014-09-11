@@ -48,8 +48,8 @@ define([], function () {
 				return this;
 			},
 
-			getSGPaginate: function (paginate) {
-				return this.paginate;
+			getSGPaginate: function () {
+				return this._paginate;
 			},
 
 			_preparePaginateFetchOptions: function (options) {

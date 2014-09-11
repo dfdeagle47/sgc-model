@@ -1,6 +1,6 @@
 define([
 	'sgc-model',
-	'chai',
+	'chai'
 ], function (SGCModel, chai) {
 	'use strict';
 
@@ -87,11 +87,12 @@ define([
 					predicate: function(model){
 						return model.get('name') === 'Yvan';
 					}
-				})
+				});
 				collection.length.should.equal(2);
 				collection.filter(function(model){
 					return model.get('name') === 'Yvan';
 				}).should.have.length(0);
+				chai.assert.equal(removed.length, 1);
 			});
 
 
@@ -104,8 +105,9 @@ define([
 					predicate: function(model){
 						return model.get('name') === 'Yann';
 					}
-				})
+				});
 				collection.length.should.equal(3);
+				chai.assert.equal(removed.length, 0);
 			});
 
 
@@ -113,7 +115,7 @@ define([
 
 				var collection = new Collection();	
 				collection.add([{name:'Yvan'}, {name:'Francois'}, {name:'kevin'}]);
-				collection.where({})
+				collection.where({});
 			});
 
 			it('check collection clone', function () {
@@ -121,11 +123,11 @@ define([
 				var collection = new Collection();	
 				collection.add([{name:'Yvan'}, {name:'Francois'}, {name:'kevin'}], {url:'bidon', parent:'xyz'});
 				
-				collection.addSGSort('name', 'asc')
+				collection.addSGSort('name', 'asc');
 				collection.addSGFilter('name', true);
 
-				expect(collection.clone()).to.be.an.instanceof(Collection);
-				expect(collection.clone()).to.be.an.instanceof(collection.constructor);
+				expect(collection.clone()).to.be.an['instanceof'](Collection);
+				expect(collection.clone()).to.be.an['instanceof'](collection.constructor);
 				expect(collection.clone().length).to.equal(3);
 				expect(collection.clone().url).to.equal(collection.url);
 				expect(collection.clone().parent).to.equal(collection.parent);
@@ -136,8 +138,6 @@ define([
 				expect(_.isEqual(collection.clone().getSGPaginate(), collection.getSGPaginate())).to.equal(true);
 
 			});
-
 		});	
-
-	}
+	};
 });

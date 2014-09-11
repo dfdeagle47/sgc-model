@@ -28,7 +28,7 @@ define([
 				var identifier = attributes;
 				attributes = {};
 				attributes[this.idAttribute] = identifier;
-			};
+			}
 
 			var res = Backbone.Model.prototype.constructor.apply(this, [attributes, options]);
 
