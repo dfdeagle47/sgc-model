@@ -1,10 +1,12 @@
 define([
 	'backbone',
+	'./mixins/modelEvents',
 	'./mixins/modelSchemaPropertiesDefinition',
 	'./mixins/modelGetter',
 	'./mixins/modelSetter'
 ], function (
 	Backbone,
+	modelEvents,
 	modelSchemaPropertiesDefinition,
 	modelGetter,
 	modelSetter
@@ -41,6 +43,8 @@ define([
 		}
 	});
 
+
+	_.extend(SagaModel.prototype, modelEvents(SagaModel));
 	_.extend(SagaModel.prototype, modelSchemaPropertiesDefinition(SagaModel));
 	_.extend(SagaModel.prototype, modelGetter(SagaModel));
 	_.extend(SagaModel.prototype, modelSetter(SagaModel));
