@@ -1,6 +1,6 @@
-define([
-], function () {
+define([], function () {
 	'use strict';
+
 	return function (/*SagaModel*/) {
 
 		return {
@@ -18,31 +18,31 @@ define([
 				return this.__generatedGetterAndSetter;
 			},
 
-			_generateGetSetForAttribute: function (attribute) {
+			_generateGetSetForAttribute: function (attribute, options) {
+
+
 				if (this._generatedGetterAndSetter()[attribute]) {
 					return;
 				}
-
 				var descriptor = {};
-				descriptor.get = this._defineGetter(attribute);
+
+				var getter = this._defineGetter(attribute);
+				if (getter) {
+					descriptor.get = getter;	
+				};
+				
 				var setter = this._defineSetter(attribute);
 				if (setter) {
 					descriptor.set = setter;
 				}
 
-				try {
-					Object.defineProperty(this, attribute, descriptor);
-					this._generatedGetterAndSetter()[attribute] = true;
-				} catch (e) {
-					throw 'error with property ' + attribute;
-				}
+				Object.defineProperty(this, attribute, descriptor);
+				this._generatedGetterAndSetter()[attribute] = descriptor;
 			},
 
 			_defineGetter: function (attribute) {
-				var getterName = 'get' + attribute.capitalize();
-
-				if (_.isFunction(this[getterName]) && this[getterName]) {
-					return this[getterName];
+				if (this.__existGetterForAttribute(attribute)) {
+					return this[attribute.asGetter()];
 				}
 
 				return function () {
@@ -51,15 +51,17 @@ define([
 			},
 
 			_defineSetter: function (attribute) {
-				var setterName = 'set' + attribute.capitalize();
-				if (_.isFunction(this[setterName]) && this[setterName]) {
-					return this[setterName];
+				if (this.__existSetterForAttribute(attribute)) {
+					return this[attribute.asSetter()];
 				}
 
 				return function (value) {
 					return this.set(attribute, value);
 				};
 			}
+
 		};
+
 	};
+
 });

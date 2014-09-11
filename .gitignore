@@ -20,11 +20,7 @@ pids
 node_modules
 
 ### Bower dependency directory ###
-src/public/src/bower_components
-!/.bowerrc
-
-### Build output directory ###
-#src/public/dist
+bower_components
 
 ### JSHint ###
 !/.jshintrc

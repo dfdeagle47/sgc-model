@@ -1,6 +1,25 @@
-describe('Mon premier test', function() {
+define([
+	'sgc-model',
+	'chai',
+	'../test/collection/collection',
+	'../test/model/model',
+	
+	'mocha'
+], function (SGCModel, chai, collection, model) {
 	'use strict';
-	it('test bidon', function() {
-		return 1 === 1;
-	});
+
+	var expect = chai.expect;
+	var mocha = window.mocha;
+
+	mocha.setup('bdd');
+
+	collection();
+	model();
+
+	if (window.mochaPhantomJS) {
+		window.mochaPhantomJS.run();
+	}
+	else {
+		mocha.run();
+	}
 });

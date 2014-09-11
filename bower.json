@@ -1,52 +1,34 @@
 {
-  "name": "sgc-model",
-  "description": "",
-  "homepage": "http://www.sagacify.com",
-  "main": "src/index.js",
-  "keywords": [
-    "model",
-    "view",
-    "controller",
-    "bind",
-    "client",
-    "browser"
-  ],
-  "author": {
-    "name": "Sagacify Team",
-    "email": "info@sagacify.com"
-  },
-  "ignore": [
-    "docs",
-    "reports",
-    "spec",
-    ".gitignore",
-    ".travis.yml",
-    ".editorconfig",
-    ".jshintc",
-    "jsdoc",
-    "build",
-    "build.cmd",
-    "Gruntfile.js",
-    "CONTRIBUTING.md",
-    "package.json",
-    "addrem",
-    "getdeps",
-    "tmp"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Sagacify/sgc-model.git"
-  },
-  "dependencies": {
-    "backbone": "^1.1.2"
-  },
-  "_release": "592d39e3de",
-  "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "592d39e3de5791140e32f240af4b391f944faa0b"
-  },
-  "_source": "git@github.com:Sagacify/sgc-model.git",
-  "_target": "*",
-  "_originalSource": "git@github.com:Sagacify/sgc-model.git"
+	"name": "sgc-model",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Sagacify's client data Model module.",
+	"main": "dist/sgc-model.min.js",
+	"keywords": [
+		"model",
+		"view",
+		"controller",
+		"bind",
+		"client",
+		"browser"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Sagacify/sgc-model.git"
+	},
+	"ignore": {},
+	"dependencies": {
+		"underscore": "^1.7.0",
+		"requirejs": "^2.1.14",
+		"backbone": "^1.1.2",
+		"jquery": "^2.1.1"
+	},
+	"author": {
+		"name": "Sagacify Team",
+		"email": "info@sagacify.com"
+	},
+	"bugs": {
+		"url": "https://github.com/Sagacify/sgc-model/issues"
+	},
+	"homepage": "https://github.com/Sagacify/sgc-model"
 }

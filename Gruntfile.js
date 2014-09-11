@@ -7,87 +7,61 @@ function GruntTasks (grunt) {
 				src: 'package.json'
 			},
 			bower: {
-				src: ['bower.json', '.bowerrc']
+				src: 'bower.json'
 			},
 			jshint: {
-				src: ['.jshintrc']
+				src: '.jshintrc'
 			},
 			jscsrc: {
 				src: '.jscsrc'
-			},
+			}
 		},
 		jshint: {
-			client: {
-				options: {
-					jshintrc: '.jshintrc',
-				},
-				src: [
-					'src/**/*.js',
-					'test/**/*.js'
-				]
-			}
-		},
-		jscs: {
-			client: {
-				src: [
-					'src/src/**/*.js',
-					'test/**/*.js'
-				],
-				options: {
-					config: '.jscsrc',
-				}
-			}
-		},
-		clean: {
-			coverage: [
-				'test/coverage'
-			],
-			preDist: [
-				'src/public/dist'
-			],
-			dist: [
-				'src/public/dist/bower_components',
-				'src/public/dist/init.js',
-				'src/public/dist/main.js',
-				'src/public/dist/main.js',
-				'src/public/dist/config',
-				'src/public/dist/js'
+			options: {
+				jshintrc: '.jshintrc'
+			},
+			src: [
+				'src/**/*.js',
+				'test/**/*.js'
 			]
 		},
-
+		jscs: {
+			src: [
+				'src/**/*.js',
+				'test/**/*.js'
+			]
+		},
+		clean: {
+			dist: [
+				'dist'
+			]
+		},
 		requirejs: {
 			all: {
 				options: {
-					baseUrl: 'src/public/dist',
-					name: 'main',
-					mainConfigFile: 'src/public/dist/init.js',
-					out: 'src/public/dist/main.min.js',
+					baseUrl: 'src',
+					name: 'sgc-model',
+					// mainConfigFile: 'src/public/dist/init.js',
+					out: 'dist/sgc-model.min.js',
 					optimize: 'uglify2',
 					generateSourceMaps: false,
 					preserveLicenseComments: false,
 					inlineText: true,
-					findNestedDependencies: true,
-					paths: {
-						requireLib: 'bower_components/requirejs/require'
-					},
-					include: [
-						'requireLib'
-					]
+					findNestedDependencies: true
+					// paths: {
+					// 	requireLib: 'bower_components/requirejs/require'
+					// },
+					// include: [
+					// 	'requireLib'
+					// ]
 				}
 			}
 		},
-
-		mochaTest: {
-			test: {
-				options: {
-					reporter: 'spec',
-					timeout: 2000
-				},
-				src: [
-					'test/test.js'
-				]
-			}
-		},
+		mocha_phantomjs: {
+			test: [
+				'test/index.html'
+			]
+		}
 	});
 
 	require('load-grunt-tasks')(grunt);
@@ -99,14 +73,13 @@ function GruntTasks (grunt) {
 	]);
 
 	grunt.registerTask('test', [
-		'mochaTest',
+		'mocha_phantomjs'
 	]);
 
 	grunt.registerTask('build', [
 		'verify',
-		'clean:preDist',
-		'requirejs',
 		'clean:dist',
+		'requirejs'
 	]);
 
 	grunt.registerTask('ci', [

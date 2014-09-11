@@ -1,46 +1,59 @@
 define([
-	'backbone',
-	'./mixins/modelEvents',
 	'./mixins/modelSchemaPropertiesDefinition',
 	'./mixins/modelGetter',
-	'./mixins/modelSetter'
+	'./mixins/modelSetter',
+	'./mixins/modelEvents',
+	'./mixins/modelHelpers'
 ], function (
-	Backbone,
-	modelEvents,
+
 	modelSchemaPropertiesDefinition,
 	modelGetter,
-	modelSetter
-	) {
+	modelSetter,
+	modelEvents,
+	modelHelpers
+) {
 	'use strict';
 
+	var Backbone = require('backbone');
+
 	var SagaModel = Backbone.Model.extend({
-		constructor: function(attributes, options){
-			options = _.defaults(options||{}, {
+
+		constructor: function (attributes, options) {
+			options = _.defaults(options || {}, {
 				automaticGetterAndSetter:false
 			});
 
-			//Memory management
-			// this.__constructorOptions = options;
-			// window.instances[this.cid] = this;
 
-			Backbone.Model.prototype.constructor.apply(this, arguments);
+			if (_.isString(attributes)) {
+				var identifier = attributes;
+				attributes = {};
+				attributes[this.idAttribute] = identifier;
+			};
+
+			var res = Backbone.Model.prototype.constructor.apply(this, [attributes, options]);
 
 			if (options.automaticGetterAndSetter) {
 				if (attributes) {
 					this._generateGetSetForAttributes(_.keys(attributes));
 				}
 			}
+
+			return res;
 		},
 
-		clear: function(){
+		clear: function () {
 			this.stopListening();
-			this.collection && (this.collection = null);
+
+			if (this.collection) {
+				this.collection = null;
+			}
+
 			this._SGISCLEARED = true;
-			// debugger
 			// window.instances[this.cid] = "cleared";
 
 			return Backbone.Model.prototype.clear.apply(this, arguments);
 		}
+
 	});
 
 
@@ -48,6 +61,9 @@ define([
 	_.extend(SagaModel.prototype, modelSchemaPropertiesDefinition(SagaModel));
 	_.extend(SagaModel.prototype, modelGetter(SagaModel));
 	_.extend(SagaModel.prototype, modelSetter(SagaModel));
+	_.extend(SagaModel.prototype, modelHelpers(SagaModel));
+	
 
 	return SagaModel;
+
 });
