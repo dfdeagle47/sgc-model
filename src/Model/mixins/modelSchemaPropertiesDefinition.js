@@ -20,8 +20,11 @@ define([
 				return this.__generatedGetterAndSetter;
 			},
 
-			_generateGetSetForAttribute: function (attribute) {
-
+			_generateGetSetForAttribute: function (attribute, options) {
+				options = _.defaults(options||{}, {
+					getter:true,
+					setter:true
+				});
 
 				if (this._generatedGetterAndSetter()[attribute]) {
 					return;
@@ -29,12 +32,12 @@ define([
 				var descriptor = {};
 
 				var getter = this._defineGetter(attribute);
-				if (getter) {
+				if (getter && options.getter) {
 					descriptor.get = getter;	
 				}
 				
 				var setter = this._defineSetter(attribute);
-				if (setter) {
+				if (setter, options.setter) {
 					descriptor.set = setter;
 				}
 

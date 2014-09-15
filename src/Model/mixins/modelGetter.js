@@ -25,7 +25,6 @@ define([
 
 				return Backbone.Model.prototype.get.apply(this, arguments);
 			}
-
 		};
 
 	};

@@ -1,11 +1,11 @@
 define([
 	'./mixins/collectionHelpers',
-	'./mixins/collectionPagination',
+	// './mixins/collectionPagination',
 	'./mixins/collectionSync',
 	'../Model/Model'
 ], function (
 	collectionHelpers,
-	collectionPagination,
+	// collectionPagination,
 	collectionSync,
 	Model
 ) {
@@ -17,30 +17,30 @@ define([
 
 		model:Model,
 
-		constructor: function (attrs, options) {
+		// constructor: function (attrs) {
 
-			options = _.defaults(options||{}, {
-				url: null,
-				parent: null
-			});
+			// options = _.defaults(options||{}, {
+			// 	url: null,
+			// 	parent: null
+			// });
 
-			this.removePaginate();
-			this.resetSGSort();
-			this.resetSGFilter();
+			// this.removePaginate();
+			// this.resetSGSort();
+			// this.resetSGFilter();
 
-			if (options.url) {
-				this.url = options.url;
-			}
+			// if (options.url) {
+			// 	this.url = options.url;
+			// }
 
-			if (options.parent) {
-				this.parent = options.parent;
-			}
+			// if (options.parent) {
+			// 	this.parent = options.parent;
+			// }
 
-			var res = Backbone.Collection.prototype.constructor.apply(this, arguments);
+		// 	var res = Backbone.Collection.prototype.constructor.apply(this, arguments);
 			
-			// this.updateUrl();
-			return res;
-		},
+		// 	// this.updateUrl();
+		// 	return res;
+		// },
 
 		//for mongoose model
 		// updateUrl: function () {
@@ -63,7 +63,7 @@ define([
 	});
 
 	_.extend(SagaCollection.prototype, collectionHelpers(SagaCollection));
-	_.extend(SagaCollection.prototype, collectionPagination(SagaCollection));
+	// _.extend(SagaCollection.prototype, collectionPagination(SagaCollection));
 	_.extend(SagaCollection.prototype, collectionSync(SagaCollection));
 
 	return SagaCollection;

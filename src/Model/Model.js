@@ -23,7 +23,6 @@ define([
 				automaticGetterAndSetter:false
 			});
 
-
 			if (_.isString(attributes)) {
 				var identifier = attributes;
 				attributes = {};
@@ -47,9 +46,6 @@ define([
 			if (this.collection) {
 				this.collection = null;
 			}
-
-			this._SGISCLEARED = true;
-			// window.instances[this.cid] = "cleared";
 
 			return Backbone.Model.prototype.clear.apply(this, arguments);
 		}

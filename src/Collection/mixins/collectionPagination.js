@@ -243,26 +243,26 @@ define([], function () {
 			},
 
 
-			_prepareQueryOptions: function (options) {
-				options = _.defaults(options || {}, {
-					data : {}
-				});
+			// _prepareQueryOptions: function (options) {
+			// 	options = _.defaults(options || {}, {
+			// 		data : {}
+			// 	});
 
-				if (this._sort) {
-					if (typeof this._sort === 'string') {
-						options.data.sortBy = this._sort;
-					} else {
-						options.data.sortBy = this._sort.keys()[0];
-						options.data.sortHow = this._sort[options.data.sortBy];
-					}
-				}
-				for (var key in this._filters) {
-					//options.data[key] = JSON.stringify(this._filters[key]);
-					options.data[key] = this._filters[key];
-				}
+			// 	if (this._sort) {
+			// 		if (typeof this._sort === 'string') {
+			// 			options.data.sortBy = this._sort;
+			// 		} else {
+			// 			options.data.sortBy = this._sort.keys()[0];
+			// 			options.data.sortHow = this._sort[options.data.sortBy];
+			// 		}
+			// 	}
+			// 	for (var key in this._filters) {
+			// 		//options.data[key] = JSON.stringify(this._filters[key]);
+			// 		options.data[key] = this._filters[key];
+			// 	}
 
-				return options;
-			},
+			// 	return options;
+			// },
 		
 
 		};

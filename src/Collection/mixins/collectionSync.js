@@ -9,13 +9,13 @@ define([], function () {
 
 			//for mongoose schema
 			fetch: function (options) {
-				options = _.defaults(options || {}, {
-					paginate:false
-				});
+				// options = _.defaults(options || {}, {
+				// 	paginate:false
+				// });
 
-				if (options.paginate) {
-					options = this._preparePaginateFetchOptions(options);
-				}
+				// if (options.paginate) {
+				// 	options = this._preparePaginateFetchOptions(options);
+				// }
 
 				options = this._prepareQueryOptions(options);
 
