@@ -17,7 +17,7 @@ define([], function () {
 				// 	options = this._preparePaginateFetchOptions(options);
 				// }
 
-				options = this._prepareQueryOptions(options);
+				// options = this._prepareQueryOptions(options);
 
 				this._isLoading = true;
 				this.trigger('loading-start');
