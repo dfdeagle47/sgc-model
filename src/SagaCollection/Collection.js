@@ -9,6 +9,7 @@ define([
 ) {
 	'use strict';
 
+
 	var Backbone = require('backbone');
 
 	var SagaCollection = Backbone.Collection.extend({

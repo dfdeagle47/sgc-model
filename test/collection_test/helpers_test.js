@@ -1,8 +1,9 @@
 define([
-	'sgc-model',
+	'SGCModel',
 	'chai'
 ], function (SGCModel, chai) {
 	'use strict';
+
 
 	return function(){
 		var expect = chai.expect;

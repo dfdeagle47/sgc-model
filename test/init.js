@@ -1,5 +1,5 @@
 require.config({
-	deps: ['sgc-model', 'test'],
+	deps: ['SGCModel', 'test'],
 	shim: {
 		jquery: {
 			exports: '$'
@@ -11,20 +11,23 @@ require.config({
 			exports: 'Backbone',
 			deps: ['jquery', 'underscore']
 		},
-		'sgc-model': {
+
+		'SGCModel': {
 			deps: ['backbone']
 		}
 	},
 	paths: {
-		jquery: '../bower_components/jquery/dist/jquery.min',
-		backbone: '../bower_components/backbone/backbone',
-		underscore: '../bower_components/underscore/underscore',
+		'jquery': '../bower_components/jquery/dist/jquery.min',
+		'backbone': '../bower_components/backbone/backbone',
+		'underscore': '../bower_components/underscore/underscore',
 
-		mocha: '../node_modules/mocha/mocha',
-		chai: '../node_modules/chai/chai',
+		'mocha': '../node_modules/mocha/mocha',
+		'chai': '../node_modules/chai/chai',
 
-		'sgc-model': '../src/sgc-model',
+		'SGCModel': '../src/sgc-model',
 		// 'sgc-model': '../dist/sgc-model.min',
+
+		// 'component': '../src/',
 
 		'test': '../test/test'
 	},

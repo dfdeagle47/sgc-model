@@ -5,7 +5,6 @@ define([
 	'./mixins/modelEvents',
 	'./mixins/modelHelpers'
 ], function (
-
 	modelSchemaPropertiesDefinition,
 	modelGetter,
 	modelSetter,

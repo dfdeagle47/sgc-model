@@ -4,8 +4,6 @@ define([
     utils
 ) {
     'use strict';
-
-    var Backbone = require('backbone');
     
     function cutTrigger(trigger) {
         var res = {};

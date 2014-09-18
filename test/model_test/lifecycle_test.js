@@ -1,5 +1,5 @@
 define([
-	'sgc-model',
+	'SGCModel',
 	'chai'
 ], function (SGCModel, chai) {
 	'use strict';
