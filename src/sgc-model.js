@@ -1,6 +1,6 @@
 define([
-	'./Collection/Collection',
-	'./Model/Model',
+	'./SagaCollection/Collection',
+	'./SagaModel/Model',
 	'./Utils/utils'
 ], function (
 Collection,
