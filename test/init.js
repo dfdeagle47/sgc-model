@@ -25,9 +25,6 @@ require.config({
 		'chai': '../node_modules/chai/chai',
 
 		'SGCModel': '../src/sgc-model',
-		// 'sgc-model': '../dist/sgc-model.min',
-
-		// 'component': '../src/',
 
 		'test': '../test/test'
 	},
