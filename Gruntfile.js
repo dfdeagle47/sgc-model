@@ -37,23 +37,28 @@ function GruntTasks (grunt) {
 			]
 		},
 		requirejs: {
-			all: {
+			min: {
 				options: {
 					baseUrl: 'src',
 					name: 'sgc-model',
-					// mainConfigFile: 'src/public/dist/init.js',
 					out: 'dist/sgc-model.min.js',
 					optimize: 'uglify2',
 					generateSourceMaps: false,
 					preserveLicenseComments: false,
 					inlineText: true,
 					findNestedDependencies: true
-					// paths: {
-					// 	requireLib: 'bower_components/requirejs/require'
-					// },
-					// include: [
-					// 	'requireLib'
-					// ]
+				}
+			},
+			concat: {
+				options: {
+					baseUrl: 'src',
+					name: 'sgc-model',
+					out: 'dist/sgc-model.js',
+					optimize: 'none',
+					generateSourceMaps: false,
+					preserveLicenseComments: false,
+					inlineText: true,
+					findNestedDependencies: true
 				}
 			}
 		},
