@@ -1,5 +1,5 @@
 define([
-	'./helpers'
+	'./helpers_test'
 ], function (
 	helpers
 	) {

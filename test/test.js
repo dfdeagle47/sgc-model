@@ -1,8 +1,8 @@
 define([
 	'sgc-model',
 	'chai',
-	'../test/collection/collection',
-	'../test/model/model',
+	'../test/collection_test/collection_test',
+	'../test/model_test/model_test',
 
 	'mocha'
 ], function (SGCModel, chai, collection, model) {
