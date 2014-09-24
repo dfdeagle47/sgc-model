@@ -418,7 +418,7 @@ define('SagaModel/mixins/modelEvents',[
             on: function(trigger, callback, context) {
                 if (this.__isMpathTrigger(trigger)) {
                     var newTrigger = cutTrigger(trigger);
-                    var subModel = this.get([newTrigger.submodelName]);
+                    var subModel = this.get(newTrigger.submodelName);
                     if (subModel instanceof Backbone.Model) {
                         subModel.on(newTrigger.subTrigger, callback, context);
                         return;
@@ -432,7 +432,7 @@ define('SagaModel/mixins/modelEvents',[
             off: function(trigger, callback, context) {
                 if (_.isString(trigger) && utils.contains('.', trigger) && utils.startsWith(trigger, 'change:')) {
                     var newTrigger = cutTrigger(trigger);
-                    var subModel = this.get([newTrigger.submodelName]);
+                    var subModel = this.get(newTrigger.submodelName);
                     if (subModel instanceof Backbone.Model) {
                         subModel.off(newTrigger.subTrigger, callback, context);
                         return;
