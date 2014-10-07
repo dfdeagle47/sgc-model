@@ -1,9 +1,11 @@
 define([
+	'./prototype/extend-prototype',
 	'./SagaCollection/Collection',
 	'./SagaModel/Model',
-	'./Utils/utils',
-	'./prototype/extend-prototype'
+	'./Utils/utils'
+	
 ], function (
+	backbonePrototype,
 	Collection,
 	Model,
 	utils
