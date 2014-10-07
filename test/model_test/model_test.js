@@ -4,8 +4,17 @@ define([
 	'./setter_test',
 	'./getter_test',
 	'./getterAndSetterSchemaProperties_test',
-	'./helpers_test'
-], function (events, lifecycle, setter, getter, getterAndSetterSchemaProperties, helpers) {
+	'./helpers_test',
+	'./extend_test'
+], function (
+	events, 
+	lifecycle, 
+	setter, 
+	getter, 
+	getterAndSetterSchemaProperties, 
+	helpers,
+	extend
+	) {
 	'use strict';
 
 	return function(){
@@ -15,5 +24,6 @@ define([
 		getter();
 		getterAndSetterSchemaProperties();
 		helpers();
+		extend();
 	};
 });

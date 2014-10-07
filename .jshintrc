@@ -26,6 +26,7 @@
 		"requirejs": false,
 		"require": false,
 		"define": false,
+		"beforeEach": false,
 
 		"it": false,
 		"describe": false,
